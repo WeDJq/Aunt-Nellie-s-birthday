@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>С Днём Рождения, Тётя! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', 'Comic Neue', 'Chalkboard SE', cursive, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            cursor: pointer;
+        }
+
+        /* Анимированные шарики */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatUp 8s ease-in infinite;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Конфетти */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            top: -10px;
+            animation: fall 3s linear infinite;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Основная карточка */
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 50px;
+            padding: 50px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            animation: cardSlide 0.8s ease;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,215,0,0.5);
+        }
+
+        @keyframes cardSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Торт */
+        .cake {
+            font-size: 100px;
+            animation: cakeBounce 1s ease infinite;
+            display: inline-block;
+            cursor: pointer;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
+
+        @keyframes cakeBounce {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 20px 0 10px;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 5px rgba(255,107,107,0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(255,107,107,0.8));
+            }
+        }
+
+        .name {
+            font-size: 4em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .age {
+            font-size: 1.5em;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 5px 20px;
+            background: rgba(255,107,107,0.1);
+            border-radius: 50px;
+        }
+
+        .message {
+            font-size: 1.2em;
+            line-height: 1.7;
+            color: #444;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .wishes {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 25px;
+            border-radius: 30px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .wishes p {
+            margin: 12px 0;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wishes p:hover {
+            transform: translateX(5px);
+            transition: 0.2s;
+        }
+
+        .emoji-group {
+            font-size: 2em;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .emoji-group span {
+            display: inline-block;
+            animation: emojiWave 1s ease infinite;
+            cursor: pointer;
+        }
+
+        @keyframes emojiWave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+
+        /* Кнопка фейерверка */
+        .firework-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            margin: 10px;
+        }
+
+        .firework-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Музыкальная кнопка */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 100;
+            font-size: 28px;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Цветочки */
+        .flower {
+            position: absolute;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 1;
+            animation: flowerFloat 10s ease-in-out infinite;
+        }
+
+        @keyframes flowerFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        /* Подпись */
+        .signature {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed #ddd;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .name {
+                font-size: 2.2em;
+            }
+            .message {
+                font-size: 1em;
+            }
+            .wishes p {
+                font-size: 0.95em;
+            }
+            .cake {
+                font-size: 70px;
+            }
+        }
+
+        /* Звёздочки */
+        .star {
+            position: absolute;
+            color: gold;
+            font-size: 20px;
+            pointer-events: none;
+            animation: starTwinkle 1s ease-out forwards;
+            z-index: 200;
+        }
+
+        @keyframes starTwinkle {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* Свечи */
+        .candle {
+            position: fixed;
+            font-size: 30px;
+            pointer-events: none;
+            animation: candleFade 2s ease-out forwards;
+            z-index: 150;
+        }
+
+        @keyframes candleFade {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(0.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="music-btn" id="musicBtn">🔈</button>
+
+    <div class="card">
+        <div class="cake" id="cakeBtn">🎂</div>
+        <h1>🎉 С Днём Рождения! 🎉</h1>
+        <div class="name">Дорогая Тётя!</div>
+        <div class="age">🌟 Самый лучший день в году! 🌟</div>
+        
+        <div class="message">
+            <p>✨ От всего сердца поздравляю тебя с этим чудесным праздником! ✨</p>
+        </div>
+        
+        <div class="wishes">
+            <p>🌸 <strong>Желаю тебе:</strong></p>
+            <p>💖 <strong>Здоровья</strong> — крепкого, чтобы ни одна болячка не подходила!</p>
+            <p>😊 <strong>Счастья</strong> — огромного, как наша любовь к тебе!</p>
+            <p>💰 <strong>Благополучия</strong> — чтобы всё задуманное сбывалось!</p>
+            <p>🌞 <strong>Радости</strong> — каждый день, каждое утро!</p>
+            <p>🎉 <strong>Улыбок</strong> — море, океан, бесконечность!</p>
+            <p>⭐ <strong>Удачи</strong> — во всех начинаниях!</p>
+            <p>💝 <strong>Любви</strong> — от родных и близких!</p>
+            <p>🎁 <strong>Сюрпризов</strong> — только приятных и неожиданных!</p>
+        </div>
+        
+        <div class="emoji-group">
+            <span>🎊</span>
+            <span>🎈</span>
+            <span>🎁</span>
+            <span>💐</span>
+            <span>🍰</span>
+            <span>🍾</span>
+            <span>🥂</span>
+            <span>✨</span>
+            <span>💝</span>
+        </div>
+        
+        <button class="firework-btn" id="fireworkBtn">
+            🎆 Запустить фейерверк 🎇
+        </button>
+        
+        <div class="signature">
+            <p>🌹 С любовью и теплом 🌹</p>
+            <p>Твой любящий племянник/племянница ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        // ============= ШАРИКИ =============
+        const balloonColors = ['🔴', '🔵', '🟢', '🟡', '🟣', '🟠', '💖', '💙', '💚', '💛', '🎈', '🎈', '🎈'];
+        
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + '%';
+            balloon.style.animationDuration = 5 + Math.random() * 6 + 's';
+            balloon.style.animationDelay = Math.random() * 3 + 's';
+            balloon.style.fontSize = 30 + Math.random() * 35 + 'px';
+            balloon.textContent = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+            document.body.appendChild(balloon);
+            
+            setTimeout(() => {
+                if (balloon && balloon.remove) balloon.remove();
+            }, 10000);
+        }
+        
+        // ============= КОНФЕТТИ =============
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#ff7675', '#74b9ff'];
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 12 + 6 + 'px';
+                    confetti.style.height = Math.random() * 12 + 6 + 'px';
+                    confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    confetti.style.animationDelay = Math.random() * 1 + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        if (confetti && confetti.remove) confetti.remove();
+                    }, 4000);
+                }, i * 15);
+            }
+        }
+        
+        // ============= ЗВЁЗДОЧКИ =============
+        function createStars(x, y) {
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.textContent = ['⭐', '✨', '🌟', '💫', '⭐'][Math.floor(Math.random() * 5)];
+                star.style.left = (x + (Math.random() - 0.5) * 200) + 'px';
+                star.style.top = (y + (Math.random() - 0.5) * 200) + 'px';
+                star.style.fontSize = 15 + Math.random() * 20 + 'px';
+                star.style.position = 'fixed';
+                document.body.appendChild(star);
+                
+                setTimeout(() => star.remove(), 1000);
+            }
+        }
+        
+        // ============= СВЕЧИ =============
+        function createCandle(x, y) {
+            const candle = document.createElement('div');
+            candle.className = 'candle';
+            candle.textContent = ['🕯️', '🎂', '🕯️', '🔥'][Math.floor(Math.random() * 4)];
+            candle.style.left = x + 'px';
+            candle.style.top = y + 'px';
+            candle.style.fontSize = 25 + Math.random() * 15 + 'px';
+            document.body.appendChild(candle);
+            
+            setTimeout(() => candle.remove(), 2000);
+        }
+        
+        // ============= ФЕЙЕРВЕРК =============
+        function launchFireworks() {
+            createConfetti();
+            
+            // Взрывы в разных местах
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight * 0.6;
+                    createStars(x, y);
+                    
+                    // Дополнительный эффект
+                    const boom = document.createElement('div');
+                    boom.style.position = 'fixed';
+                    boom.style.left = x + 'px';
+                    boom.style.top = y + 'px';
+                    boom.style.fontSize = '50px';
+                    boom.style.pointerEvents = 'none';
+                    boom.style.zIndex = '1000';
+                    boom.style.animation = 'starTwinkle 0.5s ease-out';
+                    boom.textContent = ['💥', '🎆', '🎇', '✨', '⭐'][Math.floor(Math.random() * 5)];
+                    document.body.appendChild(boom);
+                    
+                    setTimeout(() => boom.remove(), 500);
+                }, i * 150);
+            }
+            
+            // Сообщение
+            setTimeout(() => {
+                const msg = document.createElement('div');
+                msg.style.position = 'fixed';
+                msg.style.bottom = '50%';
+                msg.style.left = '50%';
+                msg.style.transform = 'translate(-50%, -50%)';
+                msg.style.background = 'rgba(0,0,0,0.8)';
+                msg.style.color = '#ffd700';
+                msg.style.padding = '20px 40px';
+                msg.style.borderRadius = '50px';
+                msg.style.fontSize = '24px';
+                msg.style.fontWeight = 'bold';
+                msg.style.zIndex = '1000';
+                msg.style.whiteSpace = 'nowrap';
+                msg.style.fontFamily = 'monospace';
+                msg.textContent = '🎉 С Днём Рождения! 🎉';
+                document.body.appendChild(msg);
+                
+                setTimeout(() => msg.remove(), 2000);
+            }, 500);
+        }
+        
+        // ============= ЦВЕТОЧКИ =============
+        function createFlowers() {
+            const flowers = ['🌸', '🌼', '🌻', '🌺', '🌸', '🌷', '💐', '🌸'];
+            for (let i = 0; i < 12; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.top = Math.random() * 100 + '%';
+                flower.style.fontSize = 25 + Math.random() * 20 + 'px';
+                flower.style.animationDuration = 8 + Math.random() * 7 + 's';
+                flower.style.animationDelay = Math.random() * 5 + 's';
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                document.body.appendChild(flower);
+            }
+        }
+        
+        // ============= МУЗЫКА (Web Audio) =============
+        let audioCtx = null;
+        let isMusicPlaying = false;
+        let musicInterval = null;
+        
+        function playHappyBirthdayTune() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            
+            // Простая мелодия "С днём рождения"
+            const notes = [
+                { freq: 261.63, duration: 0.4 }, // C4
+                { freq: 261.63, duration: 0.4 }, // C4
+                { freq: 293.66, duration: 0.4 }, // D4
+                { freq: 261.63, duration: 0.4 }, // C4
+                { freq: 349.23, duration: 0.4 }, // F4
+                { freq: 329.63, duration: 0.8 }, // E4
+                
+                { freq: 261.63, duration: 0.4 }, // C4
+                { freq: 261.63, duration: 0.4 }, // C4
+                { freq: 293.66, duration: 0.4 }, // D4
+                { freq: 261.63, duration: 0.4 }, // C4
+                { freq: 392.00, duration: 0.4 }, // G4
+                { freq: 349.23, duration: 0.8 }, // F4
+                
+                { freq: 261.63, duration: 0.4 }, // C4
+                { freq: 261.63, duration: 0.4 }, // C4
+                { freq: 523.25, duration: 0.4 }, // C5
+                { freq: 440.00, duration: 0.4 }, // A4
+                { freq: 349.23, duration: 0.4 }, // F4
+                { freq: 329.63, duration: 0.4 }, // E4
+                { freq: 293.66, duration: 0.8 }, // D4
+                
+                { freq: 466.16, duration: 0.4 }, // A#4
+                { freq: 466.16, duration: 0.4 }, // A#4
+                { freq: 440.00, duration: 0.4 }, // A4
+                { freq: 349.23, duration: 0.4 }, // F4
+                { freq: 392.00, duration: 0.4 }, // G4
+                { freq: 349.23, duration: 1.0 }  // F4
+            ];
+            
+            let time = audioCtx.currentTime;
+            
+            notes.forEach((note) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.frequency.value = note.freq;
+                gain.gain.value = 0.15;
+                
+                osc.start(time);
+                gain.gain.exponentialRampToValueAtTime(0.0001, time + note.duration);
+                osc.stop(time + note.duration);
+                
+                time += note.duration;
+            });
+        }
+        
+        function startMusic() {
+            if (musicInterval) clearInterval(musicInterval);
+            playHappyBirthdayTune();
+            musicInterval = setInterval(() => {
+                if (isMusicPlaying) {
+                    playHappyBirthdayTune();
+                }
+            }, 8000);
+        }
+        
+        function stopMusic() {
+            if (musicInterval) {
+                clearInterval(musicInterval);
+                musicInterval = null;
+            }
+        }
+        
+        function toggleMusic() {
+            const musicBtn = document.getElementById('musicBtn');
+            if (!isMusicPlaying) {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                isMusicPlaying = true;
+                startMusic();
+                musicBtn.textContent = '🔊';
+                musicBtn.style.background = '#ffd700';
+            } else {
+                isMusicPlaying = false;
+                stopMusic();
+                musicBtn.textContent = '🔈';
+                musicBtn.style.background = 'white';
+            }
+        }
+        
+        // ============= ОБРАБОТЧИКИ =============
+        document.getElementById('fireworkBtn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            launchFireworks();
+        });
+        
+        document.getElementById('cakeBtn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            createConfetti();
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    createCandle(x, y);
+                }, i * 100);
+            }
+        });
+        
+        document.getElementById('musicBtn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMusic();
+        });
+        
+        // Клик в любом месте - запуск фейерверка
+        document.body.addEventListener('click', (e) => {
+            if (e.target.classList.contains('music-btn')) return;
+            if (e.target.classList.contains('firework-btn')) return;
+            if (e.target.id === 'cakeBtn') return;
+            createStars(e.clientX, e.clientY);
+        });
+        
+        // Эмодзи при наведении
+        document.querySelectorAll('.emoji-group span').forEach(emoji => {
+            emoji.addEventListener('mouseenter', (e) => {
+                e.target.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    e.target.style.transform = '';
+                }, 200);
+            });
+        });
+        
+        // Пожелания при наведении
+        document.querySelectorAll('.wishes p').forEach(p => {
+            p.addEventListener('click', () => {
+                createStars(p.getBoundingClientRect().left + 100, p.getBoundingClientRect().top + 20);
+            });
+        });
+        
+        // ============= ЗАПУСК АНИМАЦИЙ =============
+        setInterval(createBalloon, 800);
+        setTimeout(createFlowers, 500);
+        
+        // Приветственное сообщение
+        setTimeout(() => {
+            const welcome = document.createElement('div');
+            welcome.style.position = 'fixed';
+            welcome.style.top = '30%';
+            welcome.style.left = '50%';
+            welcome.style.transform = 'translate(-50%, -50%)';
+            welcome.style.background = 'rgba(0,0,0,0.85)';
+            welcome.style.color = '#ffd700';
+            welcome.style.padding = '15px 30px';
+            welcome.style.borderRadius = '50px';
+            welcome.style.fontSize = '18px';
+            welcome.style.zIndex = '1000';
+            welcome.style.whiteSpace = 'nowrap';
+            welcome.style.fontFamily = 'monospace';
+            welcome.style.border = '2px solid #ffd700';
+            welcome.textContent = '🎂 Тётя, с Днём Рождения! 🎂';
+            document.body.appendChild(welcome);
+            
+            setTimeout(() => welcome.remove(), 3000);
+        }, 500);
+        
+        // Автоматический фейерверк через 2 секунды
+        setTimeout(() => {
+            launchFireworks();
+        }, 800);
+        
+        console.log('🎉 Поздравление готово! С Днём Рождения! 🎉');
+    </script>
+</body>
+</html>
