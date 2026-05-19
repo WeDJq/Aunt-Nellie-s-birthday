@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>С Днём Рождения, Тётя! 🎉</title>
+    <title>С Днём Рождения, Тётя Нэля! 🎉</title>
     <style>
         * {
             margin: 0;
@@ -377,7 +377,7 @@
         
         <div class="signature">
             <p>🌹 С любовью и теплом 🌹</p>
-            <p>Твой любящий племянник/племянница ❤️</p>
+            <p>Твой любящий племянник Лев ❤️</p>
         </div>
     </div>
 
@@ -670,8 +670,8 @@
         });
         
         // ============= ЗАПУСК АНИМАЦИЙ =============
-        setInterval(createBalloon, 800);
-        setTimeout(createFlowers, 500);
+        setInterval(createBalloon, 1000);
+        setTimeout(createFlowers, 900);
         
         // Приветственное сообщение
         setTimeout(() => {
@@ -689,13 +689,13 @@
             welcome.style.whiteSpace = 'nowrap';
             welcome.style.fontFamily = 'monospace';
             welcome.style.border = '2px solid #ffd700';
-            welcome.textContent = '🎂 Тётя, с Днём Рождения! 🎂';
+            welcome.textContent = '🎂 Тётя Нэля, с Днём Рождения! 🎂';
             document.body.appendChild(welcome);
             
             setTimeout(() => welcome.remove(), 3000);
         }, 500);
         
-        // Автоматический фейерверк через 2 секунды
+        // Автоматический фейерверк через 1 секунды
         setTimeout(() => {
             launchFireworks();
         }, 800);
